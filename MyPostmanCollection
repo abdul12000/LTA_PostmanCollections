@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "fc2a6904-9405-4851-a322-3374d8bcb3b7",
+		"name": "SocialNetworkingApril",
+		"description": "Imagine you are building a social network. Starting from simple functionality. Users are now able to make posts and comment on them. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllPostsRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77f9a3c1-bfb2-4416-b92e-38fab2176adc",
+						"exec": [
+							"pm.test(\"check title for #2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[1].title).to.eql(\"qui est esse\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{RootEndpoint}}/posts/",
+					"host": [
+						"{{RootEndpoint}}"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				},
+				"description": "THis is a call to get all the existing post"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUserRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f39d0ce-ac23-4414-8ba9-00a6bf9a0207",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{RootEndpoint}}/users",
+					"host": [
+						"{{RootEndpoint}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "THis is a call to get all the existing users"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCommentsRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d28d73f-950e-42e9-88fd-e6fb55154186",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{RootEndpoint}}/comments",
+					"host": [
+						"{{RootEndpoint}}"
+					],
+					"path": [
+						"comments"
+					]
+				},
+				"description": "THis is a call to get all the existing comments"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAParticularPost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dcb841b2-2d38-4abd-bb87-fb7f2d63c032",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"qui est esse\");",
+							"});",
+							"pm.test(\"check title\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(\"qui est esse\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"2"
+					]
+				},
+				"description": "Get a particular post using the querry params"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAParticularUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de3e8b07-d233-424b-a1f8-59bb15b0a3a3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"3"
+					]
+				},
+				"description": "Get a particular user using the querry params"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAParticularComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c5be0d3-4f3a-4102-8123-8e6579f06daf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments?id=3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Get a particular Comment using the querry params"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewPostRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "061fd5af-b12a-4a07-a985-f003a254260f",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Check the body\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.body).to.eql(\"This is to tell everybody that i am a king\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n\t\"userId\": 102,\r\n\t\"title\": \"I am a king\",\r\n\t\"body\": \"This is to tell everybody that i am a king\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts ",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts "
+					]
+				},
+				"description": "This is to create a new Post "
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd641586-26ca-41b5-a42f-699d3b4a901d",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"postId\": 1004,\r\n    \"name\": \"I like your photos\",\r\n    \"email\": \"PaulBasey@sydney.com\",\r\n    \"body\": \"Your photos are really nice. Can see you had a good time\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{RootEndpoint}}/comments",
+					"host": [
+						"{{RootEndpoint}}"
+					],
+					"path": [
+						"comments"
+					]
+				},
+				"description": "This is to create a new Post "
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c4837e7-84df-4061-89fe-88eb2056ce19",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n  \"name\": \"Lateef Abdulsalam\",\r\n  \"username\": \"Labduls\",\r\n  \"email\": \"labdul@yesenia.net\",\r\n  \"address\": {\r\n    \"street\": \"Pius STreet Extension\",\r\n    \"suite\": \"Number 400\",\r\n    \"city\": \"Desmond\",\r\n    \"zipcode\": \"430 000\",\r\n    \"geo\": {\r\n      \"lat\": \"-68.6102\",\r\n      \"lng\": \"-47.0653\"\r\n    }\r\n  },\r\n  \"phone\": \"1-554-123-4447\",\r\n  \"website\": \"malashe.info\",\r\n  \"company\": {\r\n    \"name\": \"Alison-Major\",\r\n    \"catchPhrase\": \"LEts go and do soem magic\",\r\n    \"bs\": \"our own new bs egic applications\"\r\n  }\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users\n",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users\n"
+					]
+				},
+				"description": "This is to create a new User"
+			},
+			"response": []
+		},
+		{
+			"name": "DeletingUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n  \"name\": \"Lateef Abdulsalam\",\r\n  \"username\": \"Labduls\",\r\n  \"email\": \"labdul@yesenia.net\",\r\n  \"address\": {\r\n    \"street\": \"Pius STreet Extension\",\r\n    \"suite\": \"Number 400\",\r\n    \"city\": \"Desmond\",\r\n    \"zipcode\": \"430 000\",\r\n    \"geo\": {\r\n      \"lat\": \"-68.6102\",\r\n      \"lng\": \"-47.0653\"\r\n    }\r\n  },\r\n  \"phone\": \"1-554-123-4447\",\r\n  \"website\": \"malashe.info\",\r\n  \"company\": {\r\n    \"name\": \"Alison-Major\",\r\n    \"catchPhrase\": \"LEts go and do soem magic\",\r\n    \"bs\": \"our own new bs egic applications\"\r\n  }\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users\n",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users\n"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
